@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect, bindActionCreators } from 'react-redux';
 import { connect } from 'react-redux';
 
 import Value from './Value';
@@ -8,29 +7,10 @@ import Control from './Control';
 
 import * as actions from '../actions';
 
-const propTypes = {
-  number: PropTypes.number,
-  handleIncrement: PropTypes.func,
-  handleDecrement: PropTypes.func,
-  handleSetColor: PropTypes.func,
-  color: PropTypes.arrayOf(PropTypes.number),
-};
-
-function createWarning(funcName) {
-  return () => console.warn(`${funcName} is not defined`);
-}
-
-const defaultProps = {
-  number: -1,
-  color: [255, 255, 255],
-  handleIncrement: () => createWarning('handleIncrement'),
-  handleDecrement: () => createWarning('handleDecrement'),
-  handleSetColor: () => createWarning('handleSetColor'),
-};
-
 class Counter extends React.Component {
   constructor(props) {
     super(props);
+
     this.setRandomColor = this.setRandomColor.bind(this);
   }
 
@@ -69,9 +49,6 @@ class Counter extends React.Component {
   }
 }
 
-Counter.propTypes = propTypes;
-Counter.defaultProps = defaultProps;
-
 const mapStateToProps = (state) => ({
   number: state.counter.number,
   color: state.ui.color,
@@ -87,8 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleSetColor: (color) => {
     dispatch(actions.setColor(color));
   },
-
-  // return bindActionCreators(actions, dispatch);
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
