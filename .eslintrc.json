@@ -19,6 +19,7 @@
     "no-unused-vars": "off",
     "no-useless-constructor": "off",
     "react/prefer-stateless-function": 0,
+    "react/prop-types": "off",
     "comma-dangle": [
       "error",
       {
